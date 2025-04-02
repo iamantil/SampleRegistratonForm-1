@@ -25,7 +25,7 @@ CONTAINER_NAME=$(docker ps --format "{{.Names}}" | head -n 1)
 echo "Stored Container Name: $CONTAINER_NAME"
 
 #Copy the script inside the container
-docker cp /home/ubuntu/hvclient.sh $CONTAINER_NAME:/root/.hvclient/hvclient.sh
+docker cp /home/ubuntu/cicd/SampleRegistratonForm-1/hvclient.sh $CONTAINER_NAME:/root/.hvclient/hvclient.sh
 
 #Make the script executable
 docker exec -it $CONTAINER_NAME chmod +x /root/.hvclient/hvclient.sh
