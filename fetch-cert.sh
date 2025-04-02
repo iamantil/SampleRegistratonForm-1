@@ -1,5 +1,12 @@
 #!/bin/sh
 
+# Check if the hvclient container is running
+if [ "$(docker ps -q -f name=hvclient)" ]; then
+    echo "Stopping and removing the existing hvclient container..."
+    docker stop hvclient
+    docker rm hvclient
+fi
+
 # Pull the docker image from the container registry
 docker pull myteqhub/hvclient:latest
 
