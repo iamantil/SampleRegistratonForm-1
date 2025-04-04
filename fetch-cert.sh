@@ -27,8 +27,14 @@ echo "Stored Container Name: $CONTAINER_NAME"
 # Copy the script inside the container
 docker cp /home/ubuntu/hvclient.sh $CONTAINER_NAME:/root/.hvclient/hvclient.sh
 
-# Make the script executable
+# Copy the mTLS cert into the container
+#docker cp /home/ubuntu/mTLS.pem $CONTAINER_NAME:/root/.hvclient
+
+# Copy the privatekey into the container
+#docker cp /home/ubuntu/privatekey.pem $CONTAINER_NAME:/root/.hvclient
+
+#Make the script executable
 docker exec $CONTAINER_NAME chmod +x /root/.hvclient/hvclient.sh
 
 # Run the hvclient.sh script inside the container to generate the files
-docker exec $CONTAINER_NAME bash -c 'bash /root/.hvclient/hvclient.sh'
+docker exec $CONTAINER_NAME bash -c 'sudo bash /root/.hvclient/hvclient.sh'
