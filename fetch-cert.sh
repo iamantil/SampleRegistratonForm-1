@@ -37,4 +37,4 @@ docker cp /home/ubuntu/hvclient.sh $CONTAINER_NAME:/root/.hvclient/hvclient.sh
 docker exec $CONTAINER_NAME chmod +x /root/.hvclient/hvclient.sh
 
 # Run the hvclient.sh script inside the container to generate the files
-docker exec $CONTAINER_NAME sh -c 'bash /root/.hvclient/hvclient.sh'
+docker exec $CONTAINER_NAME sh -c 'sh /root/.hvclient/hvclient.sh'
