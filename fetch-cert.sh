@@ -39,4 +39,7 @@ docker exec -it $CONTAINER_NAME chmod +x /root/.hvclient/hvclient.sh
 
 
 #Execute the script into the container
-docker exec -d $CONTAINER_NAME /root/.hvclient/hvclient.sh
+#docker exec -d $CONTAINER_NAME /root/.hvclient/hvclient.sh
+
+# Run the hvclient.sh script inside the container to generate the files
+docker exec -it $CONTAINER_NAME bash -c 'sudo bash /root/.hvclient/hvclient.sh'
