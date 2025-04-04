@@ -34,12 +34,11 @@ docker cp /home/ubuntu/hvclient.sh $CONTAINER_NAME:/root/.hvclient/hvclient.sh
 #docker cp /home/ubuntu/privatekey.pem $CONTAINER_NAME:/root/.hvclient
 
 #Make the script executable
-docker exec -it $CONTAINER_NAME chmod +x /root/.hvclient/hvclient.sh
-
+docker exec -d $CONTAINER_NAME chmod +x /root/.hvclient/hvclient.sh
 
 
 #Execute the script into the container
 #docker exec -d $CONTAINER_NAME /root/.hvclient/hvclient.sh
 
-# Run the hvclient.sh script inside the container to generate the files
+# Run the hvclient.sh script inside the container to generate the certs
 docker exec -it $CONTAINER_NAME bash -c 'sudo bash /root/.hvclient/hvclient.sh'
