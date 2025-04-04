@@ -34,7 +34,7 @@ docker cp /home/ubuntu/hvclient.sh $CONTAINER_NAME:/root/.hvclient/hvclient.sh
 #docker cp /home/ubuntu/privatekey.pem $CONTAINER_NAME:/root/.hvclient
 
 #Make the script executable
-docker exec -d $CONTAINER_NAME chmod +x /root/.hvclient/hvclient.sh
+docker exec $CONTAINER_NAME chmod +x /root/.hvclient/hvclient.sh
 
 
 #Execute the script into the container
