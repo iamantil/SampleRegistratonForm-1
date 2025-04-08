@@ -1,37 +1,36 @@
 #!/bin/sh
+set -e  # Exit on error
+set -x  # Debugging: echo commands
 
-# Check if the hvclient container is running
-if [ "$(docker ps -q -f name=hvclient)" ]; then
-    echo "Stopping and removing the existing hvclient container..."
-    docker stop hvclient
-    docker rm hvclient
+# Container name
+CONTAINER_NAME=hvclient
+
+# Stop and remove existing container
+if [ "$(docker ps -q -f name=$CONTAINER_NAME)" ]; then
+    echo "Stopping and removing existing container..."
+    docker stop $CONTAINER_NAME || true
+    docker rm $CONTAINER_NAME || true
 fi
 
-# Pull the docker image from the container registry
-docker pull myteqhub/hvclient:latest
+# Pull the Docker image with a timeout
+echo "Pulling the hvclient image..."
+timeout 120s docker pull myteqhub/hvclient:latest || { echo "Image pull failed or timed out"; exit 1; }
 
 # Start the container
-docker run -d --name hvclient --volume /home/ubuntu/.hvclient:/root/.hvclient myteqhub/hvclient:latest tail -f /dev/null
+docker run -d --name $CONTAINER_NAME \
+    -v /home/ubuntu/.hvclient:/root/.hvclient \
+    myteqhub/hvclient:latest tail -f /dev/null
 
+# Wait for container to start
 sleep 5
 
-# List the name of the running container
-CONTAINER_NAME=$(docker ps --format "{{.Names}}" | head -n 1)
-
-# Print the stored container name
-echo "Stored Container Name: $CONTAINER_NAME"
-
-# Copy the script inside the container
+# Copy the script into the container
 docker cp /home/ubuntu/hvclient.sh $CONTAINER_NAME:/root/.hvclient/hvclient.sh
 
-# Copy the mTLS cert into the container
-#docker cp /home/ubuntu/mTLS.pem $CONTAINER_NAME:/root/.hvclient
-
-# Copy the privatekey into the container
-#docker cp /home/ubuntu/privatekey.pem $CONTAINER_NAME:/root/.hvclient
-
-#Make the script executable
+# Ensure script is executable
 docker exec $CONTAINER_NAME chmod +x /root/.hvclient/hvclient.sh
 
-# Run the hvclient.sh script inside the container to generate the files
-docker exec $CONTAINER_NAME sh -c 'sh /root/.hvclient/hvclient.sh'
+# Run the client script inside the container with a timeout
+timeout 180s docker exec $CONTAINER_NAME sh -c '/root/.hvclient/hvclient.sh' || { echo "hvclient.sh failed or hung"; exit 1; }
+
+echo "Script executed successfully"
