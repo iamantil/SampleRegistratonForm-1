@@ -10,9 +10,6 @@ fi
 # Pull the docker image from the container registry
 docker pull myteqhub/hvclient:latest
 
-echo "Please wait pulling the hvclient image"
-sleep 30
-
 # Start the container
 docker run -d --name hvclient --volume /home/ubuntu/.hvclient:/root/.hvclient myteqhub/hvclient:latest tail -f /dev/null
 
