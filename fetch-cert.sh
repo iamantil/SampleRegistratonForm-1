@@ -31,6 +31,6 @@ docker cp /home/ubuntu/hvclient.sh $CONTAINER_NAME:/root/.hvclient/hvclient.sh
 docker exec $CONTAINER_NAME chmod +x /root/.hvclient/hvclient.sh
 
 # Run the client script inside the container with a timeout
-timeout 300s docker exec $CONTAINER_NAME sh -c '/root/.hvclient/hvclient.sh' || { echo "hvclient.sh failed or hung"; exit 1; }
+timeout 600s docker exec $CONTAINER_NAME sh -c '/root/.hvclient/hvclient.sh' || { echo "hvclient.sh failed or hung"; exit 1; }
 
 echo "Script executed successfully"
