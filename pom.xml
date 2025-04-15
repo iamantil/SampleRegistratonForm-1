@@ -28,6 +28,6 @@
     
   </dependencies>
   <build>
-    <finalName>TestRegistration</finalName>
+    <finalName>ROOT</finalName>
   </build>
 </project>
