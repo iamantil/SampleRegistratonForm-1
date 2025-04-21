@@ -1,4 +1,7 @@
 #!/bin/sh
+echo "Installing JDK"
+apk update
+apk add --no-cache openjdk11
 openssl genrsa 2048 > /root/.hvclient/key.pem
 /hvclient -trustchain > /root/.hvclient/ca_chain.pem
 /hvclient -privatekey /root/.hvclient/key.pem -commonname pki.atlasqa.co.uk -csrout > /root/.hvclient/csr.pem
