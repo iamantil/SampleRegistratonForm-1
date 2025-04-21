@@ -18,3 +18,5 @@ keytool -importkeystore \
   -srcstorepass changeit \
   -deststorepass changeit \
   -destkeystore /root/.hvclient/keystore.jks
+  -destalias myalias \
+  -noprompt
