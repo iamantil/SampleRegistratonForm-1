@@ -8,4 +8,4 @@ openssl pkcs12 -export \
   -inkey /root/.hvclient/key.pem \
   -certfile /root/.hvclient/ca_chain.pem \
   -out /root/.hvclient/keystore.p12 \
-  -passout "pass:changeit"
+  -passout "changeit"
