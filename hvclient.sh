@@ -12,3 +12,9 @@ openssl pkcs12 -export \
   -certfile /root/.hvclient/ca_chain.pem \
   -out /root/.hvclient/keystore.p12 \
   -passout "pass:changeit"
+keytool -importkeystore \
+  -srckeystore /root/.hvclient/keystore.p12 \
+  -srcstoretype PKCS12 \
+  -srcstorepass changeit \
+  -deststorepass changeit \
+  -destkeystore /root/.hvclient/keystore.jks
