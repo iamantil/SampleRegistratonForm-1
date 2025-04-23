@@ -17,7 +17,7 @@ cellspacing="2">
 
 <tr>
 <td colspan=2>
-<center><font size=4><b>GlobalSign</b></font></center>
+<center><font size=4><b>GlobalSign Certificates</b></font></center>
 </td>
 </tr>
 
