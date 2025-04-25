@@ -5,7 +5,7 @@ apk add --no-cache openjdk11
 rm -f /root/.hvclient/keystore.jks
 openssl genrsa 2048 > /root/.hvclient/key.pem
 /hvclient -trustchain > /root/.hvclient/ca_chain.pem
-/hvclient -privatekey /root/.hvclient/key.pem -commonname pki.atlasqa.co.uk -csrout > /root/.hvclient/csr.pem
+/hvclient -privatekey /root/.hvclient/key.pem -commonname devops.atlasqa.co.uk -csrout > /root/.hvclient/csr.pem
 /hvclient -commonname pki.atlasqa.co.uk -dnsnames=pki.atlasqa.co.uk -sighash=SHA-256  -csr /root/.hvclient/csr.pem > /root/.hvclient/cert.pem
 openssl pkcs12 -export \
   -in /root/.hvclient/cert.pem \
