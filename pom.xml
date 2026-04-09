@@ -28,6 +28,6 @@
     
   </dependencies>
   <build>
-    <finalName>codeSigning</finalName>
+    <finalName>ghanpat</finalName>
   </build>
 </project>
